@@ -1,0 +1,30 @@
+{
+  "name": "svelte-derver-starter",
+  "version": "0.0.1",
+  "description": "SvelteJS client and Derver server starter, bundeled with ESBuild",
+  "main": "index.js",
+  "scripts": {
+    "build": "node esbuild",
+    "dev": "node esbuild --dev",
+    "prestart": "npm run build",
+    "start": "node dist/app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "svelte",
+    "sveltejs",
+    "esbuild",
+    "derver",
+    "starter"
+  ],
+  "author": "Alexey Schebelev",
+  "license": "MIT",
+  "devDependencies": {
+    "builtins": "^3.0.1",
+    "derver": "^0.4.3",
+    "esbuild": "^0.8.31",
+    "esbuild-svelte": "^0.4.0",
+    "node-watch": "^0.7.1",
+    "svelte": "^3.31.2"
+  }
+}
