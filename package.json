@@ -7,7 +7,7 @@
     "build": "node esbuild",
     "dev": "node esbuild --dev",
     "prestart": "npm run build",
-    "start": "node dist/app",
+    "start": "cd dist && node app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

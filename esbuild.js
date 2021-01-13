@@ -13,7 +13,7 @@ const CWD = process.cwd();
     await build_client();
 
     if(DEV){
-        nodemon(path.join(CWD,'dist','app.js'))
+        nodemon(path.join(CWD,'dist','app.js'),{cwd:path.join(CWD,'dist')})
         
         watch(path.join(CWD,'src','client'),{ recursive: true }, function() {
             build_client();
@@ -107,14 +107,14 @@ function plugin_server(){return {
   }
 }
 
-function nodemon (path){
+function nodemon (path,options){
     let child;
     const kill = ()=>{
         child && child.kill()
     }
 
     const start = () => {
-        child = fork(path, [] );
+        child = fork(path, [], options);
     }
 
     process.on('SIGTERM', kill);
