@@ -32,7 +32,7 @@ async function build_server(){
         entryPoints: ['src/server/main.js'],
         bundle: true,
         outfile: 'dist/app.js',
-        format: 'cjs',
+        platform: 'node',
         sourcemap: DEV && 'inline',
         minify: !DEV,
         external:builtins(),
