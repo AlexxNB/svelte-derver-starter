@@ -21,7 +21,7 @@
   "license": "MIT",
   "devDependencies": {
     "builtins": "^3.0.1",
-    "derver": "^0.4.5",
+    "derver": "^0.4.6",
     "esbuild": "^0.8.31",
     "esbuild-svelte": "^0.4.0",
     "node-watch": "^0.7.1",
