@@ -9,32 +9,33 @@ const DEV = process.argv.includes('--dev');
 const CWD = process.cwd();
 
 (async ()=>{
-    await build_server();
-    await build_client();
+    const bundleServer = await build_server();
+    const bundleClient = await build_client();
 
     if(DEV){
         nodemon(path.join(CWD,'dist','app.js'),{cwd:path.join(CWD,'dist')})
         
         watch(path.join(CWD,'src','client'),{ recursive: true }, function() {
-            build_client();
+            bundleClient.rebuild();
         });
 
         watch(path.join(CWD,'src','server'),{ recursive: true }, async function() {
-            await build_server();
-            await build_client();
+            await bundleServer.rebuild();
+            await bundleClient.rebuild();
             console.log('Restarting server...');
         });
     }
 })()
 
 async function build_server(){
-    await build({
+    return await build({
         entryPoints: ['src/server/main.js'],
         bundle: true,
         outfile: 'dist/app.js',
         platform: 'node',
         sourcemap: DEV && 'inline',
         minify: !DEV,
+        incremental: DEV,
         external:builtins(),
         plugins:[
             plugin_server()
@@ -43,12 +44,13 @@ async function build_server(){
 }
 
 async function build_client(){
-    await build({
+    return await build({
         entryPoints: ['src/client/main.js'],
         bundle: true,
         outfile: 'dist/static/build/bundle.js',
         sourcemap: DEV && 'inline',
         minify: !DEV,
+        incremental: DEV,
         plugins: [
             sveltePlugin({compileOptions:{
                 dev: DEV,

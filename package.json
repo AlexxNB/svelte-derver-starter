@@ -1,6 +1,6 @@
 {
   "name": "svelte-derver-starter",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "SvelteJS client and Derver server starter, bundeled with ESBuild",
   "main": "index.js",
   "scripts": {
@@ -22,7 +22,7 @@
   "devDependencies": {
     "builtins": "^3.0.1",
     "derver": "^0.4.7",
-    "esbuild": "^0.8.31",
+    "esbuild": "^0.8.33",
     "esbuild-svelte": "^0.4.0",
     "node-watch": "^0.7.1",
     "svelte": "^3.31.2"
