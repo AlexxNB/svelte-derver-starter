@@ -1,27 +1,33 @@
 const { fork } = require("child_process");
 const { build } = require("esbuild");
+const { createRemote } = require("derver");
 const sveltePlugin = require("esbuild-svelte");
 const watch = require("node-watch");
 const path = require("path");
-const builtins = require('builtins')
 
 const DEV = process.argv.includes('--dev');
 const CWD = process.cwd();
+
+const remote = DEV && createRemote('svelte_derver_starter');
 
 (async ()=>{
     const bundleServer = await build_server();
     const bundleClient = await build_client();
 
     if(DEV){
-        nodemon(path.join(CWD,'dist','app.js'),{cwd:path.join(CWD,'dist')})
         
-        watch(path.join(CWD,'src','client'),{ recursive: true }, function() {
-            bundleClient.rebuild();
+        nodemon(path.join(CWD,'dist','app.js'),{cwd:path.join(CWD,'dist')});
+                
+        watch(path.join(CWD,'src','client'),{ recursive: true }, async function() {
+            try{
+                await bundleClient.rebuild();
+            }catch(err){
+                remote.error(err.message,'Svelte compile error');
+            }
         });
 
         watch(path.join(CWD,'src','server'),{ recursive: true }, async function() {
             await bundleServer.rebuild();
-            await bundleClient.rebuild();
             console.log('Restarting server...');
         });
     }
@@ -36,7 +42,6 @@ async function build_server(){
         sourcemap: DEV && 'inline',
         minify: !DEV,
         incremental: DEV,
-        external:builtins(),
         plugins:[
             plugin_server()
         ]
@@ -77,7 +82,8 @@ function plugin_server(){return {
                     export default function (options){
                         return derver({
                             dir: path.join(__dirname,'static'),
-                            ...options
+                            ...options,
+                            remote: 'svelte_derver_starter'
                         });
                     }
                 `,
