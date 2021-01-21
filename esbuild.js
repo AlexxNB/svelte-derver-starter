@@ -28,6 +28,7 @@ const remote = DEV && createRemote('svelte_derver_starter');
 
         watch(path.join(CWD,'src','server'),{ recursive: true }, async function() {
             await bundleServer.rebuild();
+            await bundleClient.rebuild();
             console.log('Restarting server...');
         });
     }
