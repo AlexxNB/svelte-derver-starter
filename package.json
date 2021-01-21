@@ -1,6 +1,6 @@
 {
   "name": "svelte-derver-starter",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "SvelteJS client and Derver server starter, bundeled with ESBuild",
   "main": "index.js",
   "scripts": {
