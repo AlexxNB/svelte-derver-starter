@@ -1,3 +1,21 @@
+const DEV = process.argv.includes('--dev');
+
+// Svelte compile configuration
+const svelteConfig = {
+
+    compileOptions:{
+        dev: DEV,
+        css: false  //use `css:true` to inline CSS in `bundle.js`
+    },
+    
+    preprocessor:[
+        // Place here any Svelte preprocessors
+    ]
+    
+}
+
+/* Edit this file below only if know what you doing! */
+
 const { fork } = require("child_process");
 const { build } = require("esbuild");
 const { createRemote } = require("derver");
@@ -5,7 +23,6 @@ const sveltePlugin = require("esbuild-svelte");
 const watch = require("node-watch");
 const path = require("path");
 
-const DEV = process.argv.includes('--dev');
 const CWD = process.cwd();
 
 const remote = DEV && createRemote('svelte_derver_starter');
@@ -58,10 +75,7 @@ async function build_client(){
         minify: !DEV,
         incremental: DEV,
         plugins: [
-            sveltePlugin({compileOptions:{
-                dev: DEV,
-                css: false
-            }})
+            sveltePlugin(svelteConfig)
         ]
     });
 }
