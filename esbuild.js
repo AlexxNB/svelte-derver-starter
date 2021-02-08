@@ -8,7 +8,7 @@ const svelteConfig = {
         css: false  //use `css:true` to inline CSS in `bundle.js`
     },
     
-    preprocessor:[
+    preprocess:[
         // Place here any Svelte preprocessors
     ]
     
