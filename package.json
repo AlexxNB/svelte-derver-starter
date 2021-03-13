@@ -1,6 +1,6 @@
 {
   "name": "svelte-derver-starter",
-  "version": "0.1.2",
+  "version": "0.0.1",
   "description": "SvelteJS client and Derver server starter, bundeled with ESBuild",
   "main": "index.js",
   "scripts": {
@@ -10,14 +10,6 @@
     "start": "cd dist && node app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [
-    "svelte",
-    "sveltejs",
-    "esbuild",
-    "derver",
-    "starter"
-  ],
-  "author": "Alexey Schebelev",
   "license": "MIT",
   "devDependencies": {
     "derver": "^0.4.12",
