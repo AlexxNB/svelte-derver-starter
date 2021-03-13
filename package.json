@@ -12,10 +12,10 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "derver": "^0.4.12",
-    "esbuild": "^0.8.51",
-    "esbuild-svelte": "^0.4.2",
+    "derver": "^0.4.13",
+    "esbuild": "^0.8.57",
+    "esbuild-svelte": "^0.4.3",
     "node-watch": "^0.7.1",
-    "svelte": "^3.32.3"
+    "svelte": "^3.35.0"
   }
 }
