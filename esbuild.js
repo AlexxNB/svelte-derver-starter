@@ -57,7 +57,7 @@ async function build_server(){
         bundle: true,
         outfile: 'dist/app.js',
         platform: 'node',
-        sourcemap: DEV && 'inline',
+        sourcemap: DEV, // Use `DEV && 'inline'` to inline sourcemaps to the bundle
         minify: !DEV,
         incremental: DEV,
         plugins:[
@@ -71,7 +71,7 @@ async function build_client(){
         entryPoints: ['src/client/main.js'],
         bundle: true,
         outfile: 'dist/static/build/bundle.js',
-        sourcemap: DEV && 'inline',
+        sourcemap: DEV, // Use `DEV && 'inline'` to inline sourcemaps to the bundle
         minify: !DEV,
         incremental: DEV,
         plugins: [
