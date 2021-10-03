@@ -9,7 +9,7 @@ const app = server({
 });
 
 
-// Add middlewares. See Derver readme for more info.
+// Add middlewares. See Derver's readme for more info: https://www.npmjs.com/package/derver#using-middlewares
 app.use('/hello/:name',(req,resp,next)=>{
     resp.send('Hello, '+req.params.name);
 })
